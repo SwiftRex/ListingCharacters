@@ -9,18 +9,9 @@ import SwiftUI
 
 struct CharacterRow: View {
     let character: Character
-    let newUrl = URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
-
     var body: some View {
         HStack {
-            AsyncImage(
-                url: newUrl,
-                placeholder: { Text("Loading...")}
-            )
-            .frame(width: 70, height: 110)
-            .aspectRatio(contentMode: .fit)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .shadow(color: .gray, radius: 10, x: 5, y: 5).padding()
+            CharacterImage(avatarURL: character.url)
             VStack(alignment: .leading) {
                 Text(character.name).font(.headline)
                 Text(character.status).font(.subheadline)
@@ -44,7 +35,7 @@ struct CharacterRow_Previews: PreviewProvider {
                                           origin: Character.Location(name: "", url: ""),
                                           location: Character.Location(name: "", url: ""),
                                           image: "", episodes: [""],
-                                          url: "",
+                                          url: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!,
                                           created: "" ))
     }
 }

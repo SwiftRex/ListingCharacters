@@ -18,7 +18,7 @@ struct Character: Identifiable {
     var location: Location
     var image: String
     var episodes: [String]
-    var url: String
+    var url: URL
     var created: String
 
     struct Location {
