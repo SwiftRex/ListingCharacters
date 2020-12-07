@@ -9,8 +9,8 @@ import Combine
 import SwiftUI
 
 class CharacterListViewModel: ObservableObject {
-    var characterList = [Character]()
+    var characterList: [Character] = []
 
-    func getCharacterList() {        
+    func getCharacterList() {
     }
 }
