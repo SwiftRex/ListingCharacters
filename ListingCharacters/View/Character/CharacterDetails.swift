@@ -12,27 +12,51 @@ struct CharacterDetails: View {
 
     var body: some View {
         VStack {
-            CharacterImage(avatarURL: viewModel.character.url)
+            CharacterImageDetails(avatarURL: viewModel.character.image)
+
+            Spacer().frame(height: 40)
+
+            Text(viewModel.character.species)
+                .foregroundColor(.gray)
+
+            Text(viewModel.character.name)
+                .font(.system(size: 24, weight: .semibold))
+                .padding([.leading, .trailing], 20)
+
+            Text(viewModel.character.gender.rawValue)
+                .foregroundColor(.gray).font(.subheadline)
+
+            //Text(viewModel.character.location.name).font(.callout)
+            //Text(viewModel.character.origin.name).font(.callout)
+
+            Spacer()
+                .frame(height: 20)
+
+            HStack(spacing: 20) {
+                ForEach(0 ..< viewModel.character.episode.count, id: \.self) { index in
+                    EpisodeLabel(text: viewModel.character.episode[index].lastPathComponent)
+                }
+            }
 
         }
     }
 }
 
-struct CharacterDetails_Previews: PreviewProvider {
-    static var previews: some View {
-        CharacterDetails(viewModel: CharacterDetailsViewModel(
-                            character:
-                                Character(
-                                    id: 0,
-                                    name: "Rick Sanchez",
-                                    status: "Alive",
-                                    species: "Human",
-                                    type: "",
-                                    gender: "Male",
-                                    origin: Character.Location(name: "", url: ""),
-                                    location: Character.Location(name: "", url: ""),
-                                    image: "", episodes: [""],
-                                    url: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!,
-                                    created: "" )))
-    }
-}
+//struct CharacterDetails_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CharacterDetails(viewModel: CharacterDetailsViewModel(
+//                            character:
+//                                Character(
+//                                    id: 0,
+//                                    name: "Rick Sanchez",
+//                                    status: "Alive",
+//                                    species: "Human",
+//                                    type: "",
+//                                    gender: "Male",
+//                                    origin: Character.Location(name: "Earth (C-137)", url: ""),
+//                                    location: Character.Location(name: "Earth (Replacement Dimension)", url: ""),
+//                                    image: "", episodes: ["Episode 1", "Episode 2"],
+//                                    url: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!,
+//                                    created: "" )))
+//    }
+//}

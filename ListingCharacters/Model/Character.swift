@@ -7,22 +7,46 @@
 
 import Foundation
 
-struct Character: Identifiable {
-    var id: Int
-    var name: String
-    var status: String
-    var species: String
-    var type: String
-    var gender: String
-    var origin: Location
-    var location: Location
-    var image: String
-    var episodes: [String]
-    var url: URL
-    var created: String
+struct Character: Decodable, Identifiable {
+    let id: Int
+    let name: String
+    let status: CharacterStatus
+    let species: String
+    let type: String
+    let gender: Gender
+    let origin: Location
+    let location: Location
+    let image: URL
+    let url: URL
+    let episode: [URL]
+    let created: Date?
+}
 
-    struct Location {
-        var name: String
-        var url: String
+enum CharacterStatus: String, Decodable {
+    case alive = "Alive"
+    case dead = "Dead"
+    case unknown
+}
+
+enum Gender: String, Decodable {
+    case male = "Male"
+    case female = "Female"
+    case genderless = "Genderless"
+    case unknown
+}
+
+struct Location: Decodable {
+    let name: String
+    let url: URL?
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case url
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        name = try values.decode(String.self, forKey: .name)
+        url = try? values.decode(URL.self, forKey: .url)
     }
 }
