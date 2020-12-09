@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E938C4FF2580FD4500303ED3 /* CharacterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E938C4FE2580FD4500303ED3 /* CharacterAPI.swift */; };
 		E93A420C257EA0CB0090F4B8 /* CharacterImageDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A420B257EA0CB0090F4B8 /* CharacterImageDetails.swift */; };
 		E93A4212257EB0F00090F4B8 /* EpisodeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A4211257EB0F00090F4B8 /* EpisodeLabel.swift */; };
 		E93A4227257ED1480090F4B8 /* CharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A4226257ED1480090F4B8 /* CharacterTests.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E938C4FE2580FD4500303ED3 /* CharacterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAPI.swift; sourceTree = "<group>"; };
 		E93A420B257EA0CB0090F4B8 /* CharacterImageDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImageDetails.swift; sourceTree = "<group>"; };
 		E93A4211257EB0F00090F4B8 /* EpisodeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeLabel.swift; sourceTree = "<group>"; };
 		E93A4226257ED1480090F4B8 /* CharacterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTests.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				E9530510257EDC8900DF8707 /* CharacterListResponse.swift */,
+				E938C4FE2580FD4500303ED3 /* CharacterAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				E9E43FE0257FF94C00AE8853 /* Publisher+Extensions.swift in Sources */,
 				E9DB0111257D23160075EA49 /* ImageCache.swift in Sources */,
 				E9FF8C9A257D6B4500CA2B5A /* CharacterListViewModel.swift in Sources */,
+				E938C4FF2580FD4500303ED3 /* CharacterAPI.swift in Sources */,
 				E9DB0123257D60290075EA49 /* CharacterImage.swift in Sources */,
 				E93A4212257EB0F00090F4B8 /* EpisodeLabel.swift in Sources */,
 				E9DB0103257C66E70075EA49 /* AsyncImage.swift in Sources */,

@@ -8,13 +8,16 @@
 import Foundation
 import Combine
 
-struct CharacterService {
+struct CharacterService: CharacterAPI {
+
+    private static var  urlSession: URLSession =  URLSession.shared
     static let apiBaseURL = "https://rickandmortyapi.com/api/character/?page="
-    static func getAll(urlSession: URLSession, page: Int = 1) -> AnyPublisher<[Character], APIError> {
+
+    static func getAll(page: Int = 1) -> AnyPublisher<[Character], APIError> {
         let jsonDecoder = JSONDecoder()
        jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
         let url = "\(Self.apiBaseURL)\(page)"
-        return urlSession.dataTaskPublisher(for: URL(string: url)!)
+        return Self.urlSession.dataTaskPublisher(for: URL(string: url)!)
             .decode(type: CharacterListResponse.self, decoder: jsonDecoder).eraseToAnyPublisher()
             .map { response -> [Character] in
                 return response.results

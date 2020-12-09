@@ -11,14 +11,13 @@ import SwiftUI
 class CharacterListViewModel: ObservableObject {
     @Published var characterList: [CharacterListItemViewModel] = []
     var cancellables = Set<AnyCancellable>()
-    let urlSession: URLSession
+    let serviceProtocolType: CharacterAPI.Type
 
-    init(urlSession: URLSession) {
-        self.urlSession = urlSession
+    init(serviceProtocolType: CharacterAPI.Type) {
+        self.serviceProtocolType = serviceProtocolType
     }
-
     func getCharacterList(page: Int = 1) {
-        let cancellable = CharacterService.getAll(urlSession: urlSession, page: 1)
+        let cancellable = serviceProtocolType.getAll(page: 1)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { result in
                 switch result {
@@ -27,14 +26,16 @@ class CharacterListViewModel: ObservableObject {
                 case .finished:
                     break
                 }
-            }, receiveValue: { list in
-                self.characterList = list.compactMap { item in
+            }, receiveValue: { [weak self] list in
+                self?.characterList = list.compactMap { item in
                     CharacterListItemViewModel(id: item.id,
                                                image: item.image,
                                                name: item.name,
                                                status: item.status.rawValue,
                                                species: item.species,
-                                               gender: item.species)
+                                               gender: item.gender.rawValue,
+                                               origin: item.origin.name,
+                                               location: item.location.name)
                 }
             })
 
@@ -49,5 +50,7 @@ class CharacterListViewModel: ObservableObject {
         let status: String
         let species: String
         let gender: String
+        let origin: String
+        let location: String
     }
 }

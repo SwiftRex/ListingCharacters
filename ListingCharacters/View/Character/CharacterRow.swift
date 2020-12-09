@@ -34,6 +34,8 @@ struct CharacterRow_Previews: PreviewProvider {
                                                                           name: "Rick Sanchez",
                                                                           status: "Alive",
                                                                           species: "Human",
-                                                                          gender: "Male"))
+                                                                          gender: "Male",
+                                                                          origin: "",
+                                                                          location: ""))
     }
 }
