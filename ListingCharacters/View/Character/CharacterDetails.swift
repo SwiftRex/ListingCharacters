@@ -23,7 +23,7 @@ struct CharacterDetails: View {
                 .font(.system(size: 24, weight: .semibold))
                 .padding([.leading, .trailing], 20)
 
-            Text(viewModel.character.gender.rawValue)
+            Text(viewModel.character.gender)
                 .foregroundColor(.gray).font(.subheadline)
 
             //Text(viewModel.character.location.name).font(.callout)
@@ -32,11 +32,11 @@ struct CharacterDetails: View {
             Spacer()
                 .frame(height: 20)
 
-            HStack(spacing: 20) {
-                ForEach(0 ..< viewModel.character.episode.count, id: \.self) { index in
-                    EpisodeLabel(text: viewModel.character.episode[index].lastPathComponent)
-                }
-            }
+//            HStack(spacing: 20) {
+//                ForEach(0 ..< viewModel.character.episode.count, id: \.self) { index in
+//                    EpisodeLabel(text: viewModel.character.episode[index].lastPathComponent)
+//                }
+//            }
 
         }
     }

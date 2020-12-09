@@ -12,7 +12,11 @@ struct CharacterListView: View {
     var body: some View {
         NavigationView {
             List(self.viewModel.characterList) { character in
-                CharacterRow(character: character)
+                NavigationLink(
+                    destination: CharacterDetails(viewModel: CharacterDetailsViewModel(character: character))){
+                    CharacterRow(character: character)
+                }
+
             }
             .navigationTitle("Character List")
         }.onAppear {

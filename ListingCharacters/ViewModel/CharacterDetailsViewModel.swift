@@ -9,9 +9,9 @@ import Combine
 import SwiftUI
 
 class CharacterDetailsViewModel: ObservableObject {
-    var character: Character
+    var character: CharacterListViewModel.CharacterListItemViewModel
 
-    init(character: Character) {
+    init(character: CharacterListViewModel.CharacterListItemViewModel) {
         self.character = character
     }
 
