@@ -6,8 +6,18 @@
 //
 
 import Foundation
+import Combine
 
-protocol CharacterService {
-    func getCharacterList(page: Int) -> [Character]
-    func getCharacterDetails(id: Int) -> Character
+struct CharacterService {
+    static let apiBaseURL = "https://rickandmortyapi.com/api/character/?page="
+    static func getAll(urlSession: URLSession, page: Int = 1) -> AnyPublisher<[Character], APIError> {
+        let jsonDecoder = JSONDecoder()
+       jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+        let url = "\(Self.apiBaseURL)\(page)"
+        return urlSession.dataTaskPublisher(for: URL(string: url)!)
+            .decode(type: CharacterListResponse.self, decoder: jsonDecoder).eraseToAnyPublisher()
+            .map { response -> [Character] in
+                return response.results
+            }.eraseToAnyPublisher()
+    }
 }

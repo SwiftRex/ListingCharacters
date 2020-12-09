@@ -8,34 +8,32 @@
 import SwiftUI
 
 struct CharacterRow: View {
-    let character: Character
+    let character: CharacterListViewModel.CharacterListItemViewModel
     var body: some View {
         HStack {
             CharacterImage(avatarURL: character.image)
             VStack(alignment: .leading) {
                 Text(character.name).font(.headline)
-                Text(character.status.rawValue).font(.subheadline)
+                Text(character.status).font(.subheadline)
                     .foregroundColor(.gray)
                 Text(character.species).font(.subheadline)
                     .foregroundColor(.gray)
-                Text(character.gender.rawValue).font(.subheadline)
+                Text(character.gender).font(.subheadline)
                     .foregroundColor(.gray)
             }
         }
     }
 }
 
-//struct CharacterRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CharacterRow(character: Character(id: 0, name: "Rick Sanchez",
-//                                          status: "Alive",
-//                                          species: "Human",
-//                                          type: "",
-//                                          gender: "Male",
-//                                          origin: Character.Location(name: "", url: ""),
-//                                          location: Character.Location(name: "", url: ""),
-//                                          image: "", episodes: [""],
-//                                          url: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!,
-//                                          created: "" ))
-//    }
-//}
+struct CharacterRow_Previews: PreviewProvider {
+    static let avatarURL = URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
+    static var previews: some View {
+        CharacterRow(character:
+                        CharacterListViewModel.CharacterListItemViewModel(id: 1,
+                                                                          image: avatarURL,
+                                                                          name: "Rick Sanchez",
+                                                                          status: "Alive",
+                                                                          species: "Human",
+                                                                          gender: "Male"))
+    }
+}

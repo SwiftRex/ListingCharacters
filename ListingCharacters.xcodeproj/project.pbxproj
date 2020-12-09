@@ -17,7 +17,6 @@
 		E93EA949257BB2B200D7EC4A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E93EA948257BB2B200D7EC4A /* Preview Assets.xcassets */; };
 		E93EA95F257BB2B200D7EC4A /* ListingCharactersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EA95E257BB2B200D7EC4A /* ListingCharactersUITests.swift */; };
 		E93EA970257BB31E00D7EC4A /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EA96F257BB31E00D7EC4A /* Character.swift */; };
-		E93EA97F257BB72E00D7EC4A /* CharacterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EA97E257BB72E00D7EC4A /* CharacterAPI.swift */; };
 		E93EA984257BBCA300D7EC4A /* characterssampledata.json in Resources */ = {isa = PBXBuildFile; fileRef = E93EA983257BBCA300D7EC4A /* characterssampledata.json */; };
 		E93EA99A257BC01C00D7EC4A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E93EA999257BC01C00D7EC4A /* .swiftlint.yml */; };
 		E93EA9A7257BCA4500D7EC4A /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EA9A6257BCA4500D7EC4A /* CharacterService.swift */; };
@@ -30,6 +29,7 @@
 		E9DB0111257D23160075EA49 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB0110257D23160075EA49 /* ImageCache.swift */; };
 		E9DB0116257D561B0075EA49 /* ImageCacheKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB0115257D561B0075EA49 /* ImageCacheKey.swift */; };
 		E9DB0123257D60290075EA49 /* CharacterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB0122257D60290075EA49 /* CharacterImage.swift */; };
+		E9E43FE0257FF94C00AE8853 /* Publisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E43FDF257FF94C00AE8853 /* Publisher+Extensions.swift */; };
 		E9FF8C9A257D6B4500CA2B5A /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF8C99257D6B4500CA2B5A /* CharacterListViewModel.swift */; };
 		E9FF8CA2257D9DA800CA2B5A /* CharacterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF8CA1257D9DA800CA2B5A /* CharacterDetails.swift */; };
 		E9FF8CAF257DADC700CA2B5A /* CharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF8CAE257DADC700CA2B5A /* CharacterDetailsViewModel.swift */; };
@@ -69,7 +69,6 @@
 		E93EA95E257BB2B200D7EC4A /* ListingCharactersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingCharactersUITests.swift; sourceTree = "<group>"; };
 		E93EA960257BB2B200D7EC4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E93EA96F257BB31E00D7EC4A /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
-		E93EA97E257BB72E00D7EC4A /* CharacterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAPI.swift; sourceTree = "<group>"; };
 		E93EA983257BBCA300D7EC4A /* characterssampledata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = characterssampledata.json; sourceTree = "<group>"; };
 		E93EA999257BC01C00D7EC4A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E93EA9A6257BCA4500D7EC4A /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterService.swift; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		E9DB0110257D23160075EA49 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		E9DB0115257D561B0075EA49 /* ImageCacheKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheKey.swift; sourceTree = "<group>"; };
 		E9DB0122257D60290075EA49 /* CharacterImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImage.swift; sourceTree = "<group>"; };
+		E9E43FDF257FF94C00AE8853 /* Publisher+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extensions.swift"; sourceTree = "<group>"; };
 		E9FF8C99257D6B4500CA2B5A /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
 		E9FF8CA1257D9DA800CA2B5A /* CharacterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetails.swift; sourceTree = "<group>"; };
 		E9FF8CAE257DADC700CA2B5A /* CharacterDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -203,7 +203,6 @@
 		E93EA97D257BB72000D7EC4A /* API */ = {
 			isa = PBXGroup;
 			children = (
-				E93EA97E257BB72E00D7EC4A /* CharacterAPI.swift */,
 				E93A421C257EC0FC0090F4B8 /* API.swift */,
 				E9530510257EDC8900DF8707 /* CharacterListResponse.swift */,
 			);
@@ -232,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				E953051D257EF33E00DF8707 /* Date+Extensions.swift */,
+				E9E43FDF257FF94C00AE8853 /* Publisher+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -424,11 +424,11 @@
 				E93EA9A7257BCA4500D7EC4A /* CharacterService.swift in Sources */,
 				E93EA970257BB31E00D7EC4A /* Character.swift in Sources */,
 				E93EA944257BB2AF00D7EC4A /* CharacterListView.swift in Sources */,
+				E9E43FE0257FF94C00AE8853 /* Publisher+Extensions.swift in Sources */,
 				E9DB0111257D23160075EA49 /* ImageCache.swift in Sources */,
 				E9FF8C9A257D6B4500CA2B5A /* CharacterListViewModel.swift in Sources */,
 				E9DB0123257D60290075EA49 /* CharacterImage.swift in Sources */,
 				E93A4212257EB0F00090F4B8 /* EpisodeLabel.swift in Sources */,
-				E93EA97F257BB72E00D7EC4A /* CharacterAPI.swift in Sources */,
 				E9DB0103257C66E70075EA49 /* AsyncImage.swift in Sources */,
 				E953051E257EF33E00DF8707 /* Date+Extensions.swift in Sources */,
 				E93EA9B3257BCE5300D7EC4A /* CharacterRow.swift in Sources */,

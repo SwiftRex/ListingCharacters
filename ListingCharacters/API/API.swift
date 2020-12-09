@@ -6,8 +6,10 @@
 //
 
 import Combine
+import Foundation
 
-protocol API {
-    func getCharacter(by id: String) -> AnyPublisher<Character, Error>
-    func getAllCharacteres() -> AnyPublisher<[Character], Error>
+struct API<Model: Decodable, ResponseType: Decodable> {
+    let urlBase: () -> String
+    let getById: (Int) -> AnyPublisher<Model, Error>
+    let getAllAtPage: (Int) -> AnyPublisher<ResponseType, Error>
 }

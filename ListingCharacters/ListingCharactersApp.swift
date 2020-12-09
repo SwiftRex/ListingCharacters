@@ -11,7 +11,7 @@ import SwiftUI
 struct ListingCharactersApp: App {
     var body: some Scene {
         WindowGroup {
-            CharacterListView(viewModel: CharacterListViewModel())
+            CharacterListView(viewModel: CharacterListViewModel(urlSession: URLSession.shared))
         }
     }
 }
