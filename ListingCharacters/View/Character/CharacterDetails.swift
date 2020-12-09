@@ -11,52 +11,66 @@ struct CharacterDetails: View {
     @ObservedObject var viewModel: CharacterDetailsViewModel
 
     var body: some View {
-        VStack {
-            CharacterImageDetails(avatarURL: viewModel.character.image)
+        ScrollView {
+            VStack {
+                CharacterImageDetails(avatarURL: viewModel.character.image)
 
-            Spacer().frame(height: 40)
+                Spacer().frame(height: 40)
 
-            Text(viewModel.character.species)
-                .foregroundColor(.gray)
+                Text(viewModel.character.species)
+                    .foregroundColor(.gray)
 
-            Text(viewModel.character.name)
-                .font(.system(size: 24, weight: .semibold))
-                .padding([.leading, .trailing], 20)
+                Text(viewModel.character.name)
+                    .font(.system(size: 24, weight: .semibold))
+                    .padding([.leading, .trailing], 20)
 
-            Text(viewModel.character.gender)
-                .foregroundColor(.gray).font(.subheadline)
+                Text(viewModel.character.gender)
+                    .foregroundColor(.gray).font(.subheadline)
 
-            //Text(viewModel.character.location.name).font(.callout)
-            //Text(viewModel.character.origin.name).font(.callout)
+                Text(viewModel.character.location).font(.callout)
 
-            Spacer()
-                .frame(height: 20)
+                Text(viewModel.character.origin).font(.callout)
 
-//            HStack(spacing: 20) {
-//                ForEach(0 ..< viewModel.character.episode.count, id: \.self) { index in
-//                    EpisodeLabel(text: viewModel.character.episode[index].lastPathComponent)
-//                }
-//            }
+                Spacer()
+                    .frame(height: 20)
 
+                let columns = 3
+                let roundedRows = Int(ceil((Double(viewModel.character.episodes.count) / Double(columns))))
+                
+                VStack {
+                    ForEach(0 ..< roundedRows, id: \.self) { row in
+                        HStack {
+                            ForEach(0 ..< columns, id: \.self) { column in
+                                let current = row * columns + column
+                                if current < viewModel.character.episodes.count {
+                                    EpisodeLabel(text: viewModel.character.episodes[current])
+                                }
+                            }
+                        }
+                    }
+                }
+                Spacer()
+                    .frame(height: 20)
+            }
         }
     }
+
 }
 
-//struct CharacterDetails_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CharacterDetails(viewModel: CharacterDetailsViewModel(
-//                            character:
-//                                Character(
-//                                    id: 0,
-//                                    name: "Rick Sanchez",
-//                                    status: "Alive",
-//                                    species: "Human",
-//                                    type: "",
-//                                    gender: "Male",
-//                                    origin: Character.Location(name: "Earth (C-137)", url: ""),
-//                                    location: Character.Location(name: "Earth (Replacement Dimension)", url: ""),
-//                                    image: "", episodes: ["Episode 1", "Episode 2"],
-//                                    url: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!,
-//                                    created: "" )))
-//    }
-//}
+struct CharacterDetails_Previews: PreviewProvider {
+    static let avatarURL = URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
+    static let characterItemViewModel = CharacterListViewModel
+        .CharacterListItemViewModel(id: 1,
+                                    image: avatarURL,
+                                    name: "Rick Sanchez",
+                                    status: "Alive",
+                                    species: "Human",
+                                    gender: "Male",
+                                    origin: "",
+                                    location: "",
+                                    episodes: ["Episode 1", "Episode 2", "Episode 3", "Episode 4", "Episode 5"])
+    static var previews: some View {
+        CharacterDetails(viewModel: CharacterDetailsViewModel(character: characterItemViewModel)
+        )
+    }
+}

@@ -34,8 +34,9 @@ class CharacterListViewModel: ObservableObject {
                                                status: item.status.rawValue,
                                                species: item.species,
                                                gender: item.gender.rawValue,
-                                               origin: item.origin.name,
-                                               location: item.location.name)
+                                               origin: "from: \(item.origin.name)",
+                                               location: "at \(item.location.name)",
+                                               episodes: item.episode.compactMap { "Episode \($0.lastPathComponent)" })
                 }
             })
 
@@ -52,5 +53,6 @@ class CharacterListViewModel: ObservableObject {
         let gender: String
         let origin: String
         let location: String
+        let episodes: [String]
     }
 }

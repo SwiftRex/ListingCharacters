@@ -36,6 +36,7 @@ struct CharacterRow_Previews: PreviewProvider {
                                                                           species: "Human",
                                                                           gender: "Male",
                                                                           origin: "",
-                                                                          location: ""))
+                                                                          location: "",
+                                                                          episodes: ["Episode 1", "Episode 2"]))
     }
 }
