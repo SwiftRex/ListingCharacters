@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E93A420C257EA0CB0090F4B8 /* CharacterImageDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A420B257EA0CB0090F4B8 /* CharacterImageDetails.swift */; };
 		E93A4212257EB0F00090F4B8 /* EpisodeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A4211257EB0F00090F4B8 /* EpisodeLabel.swift */; };
-		E93A421D257EC0FC0090F4B8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A421C257EC0FC0090F4B8 /* API.swift */; };
 		E93A4227257ED1480090F4B8 /* CharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A4226257ED1480090F4B8 /* CharacterTests.swift */; };
 		E93EA942257BB2AF00D7EC4A /* ListingCharactersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EA941257BB2AF00D7EC4A /* ListingCharactersApp.swift */; };
 		E93EA944257BB2AF00D7EC4A /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93EA943257BB2AF00D7EC4A /* CharacterListView.swift */; };
@@ -55,7 +54,6 @@
 /* Begin PBXFileReference section */
 		E93A420B257EA0CB0090F4B8 /* CharacterImageDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImageDetails.swift; sourceTree = "<group>"; };
 		E93A4211257EB0F00090F4B8 /* EpisodeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeLabel.swift; sourceTree = "<group>"; };
-		E93A421C257EC0FC0090F4B8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		E93A4226257ED1480090F4B8 /* CharacterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTests.swift; sourceTree = "<group>"; };
 		E93EA93E257BB2AF00D7EC4A /* ListingCharacters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListingCharacters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93EA941257BB2AF00D7EC4A /* ListingCharactersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingCharactersApp.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 		E93EA97D257BB72000D7EC4A /* API */ = {
 			isa = PBXGroup;
 			children = (
-				E93A421C257EC0FC0090F4B8 /* API.swift */,
 				E9530510257EDC8900DF8707 /* CharacterListResponse.swift */,
 			);
 			path = API;
@@ -438,7 +435,6 @@
 				E9DB0116257D561B0075EA49 /* ImageCacheKey.swift in Sources */,
 				E9530511257EDC8900DF8707 /* CharacterListResponse.swift in Sources */,
 				E9DB00FB257C66260075EA49 /* ImageLoader.swift in Sources */,
-				E93A421D257EC0FC0090F4B8 /* API.swift in Sources */,
 				E93A420C257EA0CB0090F4B8 /* CharacterImageDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
