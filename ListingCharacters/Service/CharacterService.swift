@@ -25,9 +25,9 @@ struct CharacterService: CharacterAPI {
     }
 }
 
-
-struct CharacterFakeService : CharacterAPI {
-    static func getAll(page: Int) -> AnyPublisher<[Character], APIError> {
+struct CharacterFakeService: CharacterAPI {
+    static func getAll(page: Int)
+    -> AnyPublisher<[Character], APIError> {
         let imageRickURL = URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
         let imageMortyURL = URL(string: "https://rickandmortyapi.com/api/character/avatar/2.jpeg")!
         let imageSummerURL = URL(string: "https://rickandmortyapi.com/api/character/avatar/3.jpeg")!
@@ -38,28 +38,18 @@ struct CharacterFakeService : CharacterAPI {
         let bethURL = URL(string: "https://rickandmortyapi.com/api/character/4")!
         let origin = Location(name: "Earth (C-137)", url: nil)
         let location = Location(name: "Earth (Replacement Dimension)", url: nil)
-
-        let rick = Character(id: 1,
-                             name: "Rick Sanchez",
-                             status: .alive,
-                             species: "Human",
+        let rick = Character(id: 1, name: "Rick Sanchez", status: .alive, species: "Human",
                              type: "",
                              gender: .male,
                              origin: origin,
                              location: location, image: imageRickURL, url: rickURL, episode: [], created: nil)
-        let morty = Character(id: 2,
-                             name: "Morty Smith",
-                             status: .alive,
-                             species: "Human",
+        let morty = Character(id: 2, name: "Morty Smith", status: .alive, species: "Human",
                              type: "",
                              gender: .male,
                              origin: origin,
                              location: location, image: imageMortyURL, url: mortyURL, episode: [], created: nil)
 
-        let summer = Character(id: 3,
-                             name: "Summer Smith",
-                             status: .alive,
-                             species: "Human",
+        let summer = Character(id: 3, name: "Summer Smith", status: .alive, species: "Human",
                              type: "",
                              gender: .female,
                              origin: origin,

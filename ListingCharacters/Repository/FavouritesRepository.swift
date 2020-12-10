@@ -47,10 +47,8 @@ extension UserDefaults: FavouritesRepository {
     }
 }
 
-
 class FavouriteRepositoryFake: FavouritesRepository {
     var favouritesCharacters: [Int] = []
-
 
     func addCharacterToFavouriteList(id: Int) {
 
@@ -64,6 +62,4 @@ class FavouriteRepositoryFake: FavouritesRepository {
         return false
     }
 
-
 }
-
