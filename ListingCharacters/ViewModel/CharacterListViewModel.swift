@@ -43,23 +43,27 @@ class CharacterListViewModel: ObservableObject {
                 }
             }, receiveValue: { [weak self] list in
                 self?.characterList = list.compactMap { item in
-                    CharacterListItemViewModel(id: item.id,
-                                               image: item.image,
-                                               name: item.name,
-                                               status: item.status.rawValue,
-                                               species: item.species,
-                                               gender: item.gender.rawValue,
-                                               origin: "from: \(item.origin.name)",
-                                               location: "at \(item.location.name)",
-                                               episodes: item.episode.compactMap { "Episode \($0.lastPathComponent)"
-                                               },
-                                               isFavourite: self?.favouritesRepository.isFavourite(id: item.id)
-                                                ?? false)
+                    self?.fromModel(model: item)
                 }
             })
 
         cancellables.insert(cancellable)
 
+    }
+
+    func fromModel(model: Character) -> CharacterListItemViewModel {
+        CharacterListItemViewModel(id: model.id,
+                                   image: model.image,
+                                   name: model.name,
+                                   status: model.status.rawValue,
+                                   species: model.species,
+                                   gender: model.gender.rawValue,
+                                   origin: "from: \(model.origin.name)",
+                                   location: "at \(model.location.name)",
+                                   episodes: model.episode.compactMap { "Episode \($0.lastPathComponent)"
+                                   },
+                                   isFavourite: self.favouritesRepository.isFavourite(id: model.id)
+        )
     }
 
     struct CharacterListItemViewModel: Identifiable {
