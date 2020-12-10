@@ -60,7 +60,8 @@ struct CharacterFakeService: CharacterAPI {
                              origin: origin,
                              location: location, image: imageSummerURL, url: bethURL, episode: [], created: nil)
         let chars: [Character] = [rick, morty, summer, beth]
-        let response = CharacterListResponse(info: CharacterListResponse.Info(count: 1, pages: 1, next: nil, prev: nil), results: chars)
+        let response = CharacterListResponse(info: CharacterListResponse.Info(count: 1, pages: 1,
+                                                                              next: nil, prev: nil), results: chars)
         return Result.Publisher(response).eraseToAnyPublisher()
     }
 }
