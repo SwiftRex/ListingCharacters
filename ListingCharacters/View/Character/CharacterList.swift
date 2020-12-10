@@ -15,6 +15,10 @@ struct CharacterList: View {
                 NavigationLink(
                     destination: CharacterDetails(viewModel: CharacterDetailsViewModel(character: character))) {
                     CharacterRow(viewModel: character, onTapFavourite: viewModel.toggleCharacterFavourite(id:))
+                }.onAppear{
+                    if viewModel.characterList.last?.id == character.id {
+                        self.viewModel.getCharacterList()
+                    }
                 }
             }
             .navigationTitle("Character List")

@@ -11,6 +11,12 @@ import SwiftUI
 class CharacterListViewModel: ObservableObject {
 
     @Published var characterList: [CharacterListItemViewModel] = []
+    @Published var pagingInfo: CharacterListResponse.Info =  CharacterListResponse.Info(count: 0,
+                                                                                        pages: 0,
+                                                                                        next: nil,
+                                                                                        prev: nil)
+    @Published var page: Int = 1
+
     var cancellables = Set<AnyCancellable>()
     let serviceProtocolType: CharacterAPI.Type
     let favouritesRepository: FavouritesRepository
@@ -18,6 +24,17 @@ class CharacterListViewModel: ObservableObject {
     init(serviceProtocolType: CharacterAPI.Type, favouritesRepository: FavouritesRepository) {
         self.serviceProtocolType = serviceProtocolType
         self.favouritesRepository = favouritesRepository
+    }
+
+    private func updatePage() {
+        if let nextPage = self.pagingInfo.next {
+            let pageAsStr = nextPage.query?.split(separator: "=").last
+            if let actualPage = pageAsStr {
+                if let pageAsInt = Int(actualPage) {
+                    self.page = pageAsInt
+                }
+            }
+        }
     }
 
     func toggleCharacterFavourite(id: Int) {
@@ -31,8 +48,8 @@ class CharacterListViewModel: ObservableObject {
         }
     }
 
-    func getCharacterList(page: Int = 1) {
-        let cancellable = serviceProtocolType.getAll(page: 1)
+    func getCharacterList() {
+        let cancellable = serviceProtocolType.getAll(page: self.page)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { result in
                 switch result {
@@ -41,10 +58,12 @@ class CharacterListViewModel: ObservableObject {
                 case .finished:
                     break
                 }
-            }, receiveValue: { [weak self] list in
-                self?.characterList = list.compactMap { item in
+            }, receiveValue: { [weak self] response in
+                self?.pagingInfo = response.info
+                self?.characterList.append(contentsOf: response.results.compactMap { item in
                     self?.fromModel(model: item)
-                }
+                })
+                self?.updatePage()
             })
 
         cancellables.insert(cancellable)
@@ -82,4 +101,5 @@ class CharacterListViewModel: ObservableObject {
             isFavourite ? "star.fill" : "star"
         }
     }
+
 }

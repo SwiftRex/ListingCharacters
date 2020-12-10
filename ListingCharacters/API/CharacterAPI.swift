@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol CharacterAPI {
-    static func getAll(page: Int) -> AnyPublisher<[Character], APIError>
+    static func getAll(page: Int) -> AnyPublisher<CharacterListResponse, APIError>
 }
