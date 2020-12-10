@@ -44,6 +44,11 @@ struct Location: Decodable {
         case url
     }
 
+    init(name: String, url: URL?) {
+        self.name = name
+        self.url = url
+    }
+
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decode(String.self, forKey: .name)

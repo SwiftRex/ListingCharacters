@@ -9,6 +9,7 @@ import Combine
 import SwiftUI
 
 class CharacterListViewModel: ObservableObject {
+
     @Published var characterList: [CharacterListItemViewModel] = []
     var cancellables = Set<AnyCancellable>()
     let serviceProtocolType: CharacterAPI.Type
@@ -20,9 +21,9 @@ class CharacterListViewModel: ObservableObject {
     }
 
     func toggleCharacterFavourite(id: Int) {
-        if let index = characterList.firstIndex(where: { $0.id == id }) {
-            characterList[index].isFavourite = !characterList[index].isFavourite
-            if characterList[index].isFavourite {
+        characterList.change(id: id) { _, character in
+            character.isFavourite = !character.isFavourite
+            if character.isFavourite {
                 favouritesRepository.addCharacterToFavouriteList(id: id)
             } else {
                 favouritesRepository.removeCharacterFromFavouriteList(id: id)

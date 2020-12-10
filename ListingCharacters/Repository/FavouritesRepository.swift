@@ -46,3 +46,24 @@ extension UserDefaults: FavouritesRepository {
         self.favouritesCharacters.contains(id)
     }
 }
+
+
+class FavouriteRepositoryFake: FavouritesRepository {
+    var favouritesCharacters: [Int] = []
+
+
+    func addCharacterToFavouriteList(id: Int) {
+
+    }
+
+    func removeCharacterFromFavouriteList(id: Int) {
+
+    }
+
+    func isFavourite(id: Int) -> Bool {
+        return false
+    }
+
+
+}
+

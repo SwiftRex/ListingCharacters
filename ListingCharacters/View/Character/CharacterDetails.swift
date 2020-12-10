@@ -66,8 +66,8 @@ struct CharacterDetails_Previews: PreviewProvider {
                                     status: "Alive",
                                     species: "Human",
                                     gender: "Male",
-                                    origin: "",
-                                    location: "",
+                                    origin: "from Earth (C-137)",
+                                    location: "at Earth (Replacement Dimension)",
                                     episodes: ["Episode 1", "Episode 2", "Episode 3", "Episode 4", "Episode 5"],
                                     isFavourite: true)
     static var previews: some View {
