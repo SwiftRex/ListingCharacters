@@ -11,6 +11,7 @@ struct CharacterDetails: View {
     @ObservedObject var viewModel: CharacterDetailsViewModel
 
     var body: some View {
+
         ScrollView {
             VStack {
                 CharacterImageDetails(avatarURL: viewModel.character.image)
@@ -36,7 +37,6 @@ struct CharacterDetails: View {
 
                 let columns = 3
                 let roundedRows = Int(ceil((Double(viewModel.character.episodes.count) / Double(columns))))
-                
                 VStack {
                     ForEach(0 ..< roundedRows, id: \.self) { row in
                         HStack {
@@ -68,7 +68,8 @@ struct CharacterDetails_Previews: PreviewProvider {
                                     gender: "Male",
                                     origin: "",
                                     location: "",
-                                    episodes: ["Episode 1", "Episode 2", "Episode 3", "Episode 4", "Episode 5"])
+                                    episodes: ["Episode 1", "Episode 2", "Episode 3", "Episode 4", "Episode 5"],
+                                    isFavourite: true)
     static var previews: some View {
         CharacterDetails(viewModel: CharacterDetailsViewModel(character: characterItemViewModel)
         )

@@ -12,10 +12,24 @@ class CharacterListViewModel: ObservableObject {
     @Published var characterList: [CharacterListItemViewModel] = []
     var cancellables = Set<AnyCancellable>()
     let serviceProtocolType: CharacterAPI.Type
+    let favouritesRepository: FavouritesRepository
 
-    init(serviceProtocolType: CharacterAPI.Type) {
+    init(serviceProtocolType: CharacterAPI.Type, favouritesRepository: FavouritesRepository) {
         self.serviceProtocolType = serviceProtocolType
+        self.favouritesRepository = favouritesRepository
     }
+
+    func toggleCharacterFavourite(id: Int) {
+        if let index = characterList.firstIndex(where: { $0.id == id }) {
+            characterList[index].isFavourite = !characterList[index].isFavourite
+            if characterList[index].isFavourite {
+                favouritesRepository.addCharacterToFavouriteList(id: id)
+            } else {
+                favouritesRepository.removeCharacterFromFavouriteList(id: id)
+            }
+        }
+    }
+
     func getCharacterList(page: Int = 1) {
         let cancellable = serviceProtocolType.getAll(page: 1)
             .receive(on: DispatchQueue.main)
@@ -36,7 +50,10 @@ class CharacterListViewModel: ObservableObject {
                                                gender: item.gender.rawValue,
                                                origin: "from: \(item.origin.name)",
                                                location: "at \(item.location.name)",
-                                               episodes: item.episode.compactMap { "Episode \($0.lastPathComponent)" })
+                                               episodes: item.episode.compactMap { "Episode \($0.lastPathComponent)"
+                                               },
+                                               isFavourite: self?.favouritesRepository.isFavourite(id: item.id)
+                                                ?? false)
                 }
             })
 
@@ -54,5 +71,10 @@ class CharacterListViewModel: ObservableObject {
         let origin: String
         let location: String
         let episodes: [String]
+        var isFavourite: Bool
+
+        var favouriteImageName: String {
+            isFavourite ? "star.fill" : "star"
+        }
     }
 }

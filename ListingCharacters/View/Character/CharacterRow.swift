@@ -8,17 +8,25 @@
 import SwiftUI
 
 struct CharacterRow: View {
-    let character: CharacterListViewModel.CharacterListItemViewModel
+    var viewModel: CharacterListViewModel.CharacterListItemViewModel
+    let onTapFavourite: (Int) -> Void
     var body: some View {
         HStack {
-            CharacterImage(avatarURL: character.image)
+            Button(action: {
+                    onTapFavourite(viewModel.id) },
+                   label: {
+                    Image(systemName: viewModel.favouriteImageName)
+                        .foregroundColor(.yellow)
+                   }).buttonStyle(PlainButtonStyle())
+
+            CharacterImage(avatarURL: viewModel.image)
             VStack(alignment: .leading) {
-                Text(character.name).font(.headline)
-                Text(character.status).font(.subheadline)
+                Text(viewModel.name).font(.headline)
+                Text(viewModel.status).font(.subheadline)
                     .foregroundColor(.gray)
-                Text(character.species).font(.subheadline)
+                Text(viewModel.species).font(.subheadline)
                     .foregroundColor(.gray)
-                Text(character.gender).font(.subheadline)
+                Text(viewModel.gender).font(.subheadline)
                     .foregroundColor(.gray)
             }
         }
@@ -28,7 +36,7 @@ struct CharacterRow: View {
 struct CharacterRow_Previews: PreviewProvider {
     static let avatarURL = URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
     static var previews: some View {
-        CharacterRow(character:
+        CharacterRow(viewModel:
                         CharacterListViewModel.CharacterListItemViewModel(id: 1,
                                                                           image: avatarURL,
                                                                           name: "Rick Sanchez",
@@ -37,6 +45,7 @@ struct CharacterRow_Previews: PreviewProvider {
                                                                           gender: "Male",
                                                                           origin: "",
                                                                           location: "",
-                                                                          episodes: ["Episode 1", "Episode 2"]))
+                                                                          episodes: ["Episode 1", "Episode 2"],
+                                                                          isFavourite: true), onTapFavourite: {_ in })
     }
 }

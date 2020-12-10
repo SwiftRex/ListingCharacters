@@ -13,10 +13,9 @@ struct CharacterListView: View {
         NavigationView {
             List(self.viewModel.characterList) { character in
                 NavigationLink(
-                    destination: CharacterDetails(viewModel: CharacterDetailsViewModel(character: character))){
-                    CharacterRow(character: character)
+                    destination: CharacterDetails(viewModel: CharacterDetailsViewModel(character: character))) {
+                    CharacterRow(viewModel: character, onTapFavourite: viewModel.toggleCharacterFavourite(id:))
                 }
-
             }
             .navigationTitle("Character List")
         }.onAppear {
