@@ -5,23 +5,24 @@
 //  Created by Jarbas on 10/12/20.
 //
 
-@testable import ListingCharacters
 import Foundation
+@testable import ListingCharacters
+import SwiftUI
+
 class CharacterListSnapshotTest: SnapshotTestsBase {
 
     func testCharacterList() {
-        let viewModel = CharacterListViewModel(serviceProtocolType:
-                                                CharacterFakeService.self,
-                                               favouritesRepository: FavouriteRepositoryFake())
-        viewModel.getCharacterList()
-        let sut = CharacterList(viewModel: viewModel)
+        let state = CharacterListState(
+            characteres: fakeCharacters(),
+            pageInfo: CharacterPaging(count: 4, pages: 1, next: nil, prev: nil),
+            favourites: [],
+            images: [:]
+        )
+        let sut = CharacterList(
+            viewModel: .mock(state: CharacterListViewState.from(state: state)),
+            characterDetails: { _ in AnyView(EmptyView()) }
+        )
 
-        let expectation = self.expectation(description: "wait")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-          expectation.fulfill()
-        }
-
-        self.wait(for: [expectation], timeout: 2)
         assertSnapshotDevices(sut)
     }
 }

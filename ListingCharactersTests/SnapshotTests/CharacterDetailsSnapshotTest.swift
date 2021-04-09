@@ -6,10 +6,13 @@
 //
 
 @testable import ListingCharacters
+import XCTest
+
 class CharacterDetailsSnapshotTest: SnapshotTestsBase {
 
     func testCharacterDetails() {
-        let sut = CharacterDetails_Previews.previews
-        assertSnapshotDevices(sut)
+        XCTFail("To be implemented")
+//        let sut = CharacterDetails_Previews.previews
+//        assertSnapshotDevices(sut)
     }
 }

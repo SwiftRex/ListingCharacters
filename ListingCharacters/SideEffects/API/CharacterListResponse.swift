@@ -24,7 +24,7 @@ extension CharacterPaging {
         .init(
             count: 0,
             pages: -1,
-            next: unwrapOrDie(URL(string: "https://rickandmortyapi.com/api/character/?page=1")),
+            next: URL(string: "https://rickandmortyapi.com/api/character/?page=1").unwrapOrDie(),
             prev: nil
         )
     }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-protocol FavouritesRepository: class {
+protocol FavouritesRepository: AnyObject {
     var favouritesCharacters: [Int] { get }
 
     func addCharacterToFavouriteList(id: Int)
