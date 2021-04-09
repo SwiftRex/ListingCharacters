@@ -15,7 +15,7 @@ struct CharacterListItemViewState: Equatable, Identifiable {
     let status: String
     let species: String
     let gender: String
-    var favouriteImageName: String
+    let favouriteImageName: String
 
     static func from(state: Character, image: CGImage?, isFavorite: Bool) -> CharacterListItemViewState {
         CharacterListItemViewState(

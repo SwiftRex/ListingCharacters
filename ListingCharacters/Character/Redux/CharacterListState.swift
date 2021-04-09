@@ -13,6 +13,7 @@ struct CharacterListState: Equatable {
     var pageInfo: CharacterPaging
     var favourites: Set<Int>
     var images: [URL: CGImage]
+    var viewDetails: Int?
 }
 
 extension CharacterListState {
@@ -20,6 +21,7 @@ extension CharacterListState {
         characteres: [],
         pageInfo: .empty,
         favourites: [],
-        images: [:]
+        images: [:],
+        viewDetails: nil
     )
 }

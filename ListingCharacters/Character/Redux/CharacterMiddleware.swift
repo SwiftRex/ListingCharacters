@@ -64,7 +64,7 @@ class CharacterMiddleware: Middleware {
                 self.imageDownloads.removeValue(forKey: url)
             case .toggleFavorite:
                 break
-            case .gotCharacters:
+            case .gotCharacters, .closeDetails, .openDetails:
                 return
             }
 

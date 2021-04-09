@@ -9,6 +9,7 @@ import Foundation
 
 struct CharacterListViewState: Equatable {
     let rows: [CharacterListItemViewState]
+    let selectedCharacter: Int?
 }
 
 extension CharacterListViewState {
@@ -20,13 +21,14 @@ extension CharacterListViewState {
                     image: state.images[character.image],
                     isFavorite: state.favourites.contains(character.id)
                 )
-            }
+            },
+            selectedCharacter: state.viewDetails
         )
     }
 }
 
 extension CharacterListViewState {
     static var empty: CharacterListViewState {
-        CharacterListViewState(rows: [])
+        CharacterListViewState(rows: [], selectedCharacter: nil)
     }
 }

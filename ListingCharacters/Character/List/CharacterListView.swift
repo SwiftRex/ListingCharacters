@@ -23,7 +23,13 @@ struct CharacterListView: View {
                         identifiableRowToCollectionAction: CharacterListViewAction.item
                     ) { rowViewModel in
                         NavigationLink(
-                            destination: characterDetails.view(rowViewModel.state.id)
+                            destination: destination(for: rowViewModel.state.id),
+                            tag: rowViewModel.state.id,
+                            selection: viewModel.binding[\.selectedCharacter, .animated] { selection in
+                                if selection == nil { return .dismissCharacterDetails }
+                                if selection == rowViewModel.state.id { return .selectCharacter(id: rowViewModel.state.id) }
+                                return nil
+                            }
                         ) {
                             CharacterListItemView(viewModel: rowViewModel)
                         }
@@ -33,6 +39,19 @@ struct CharacterListView: View {
             .navigationTitle("Character List")
         }.onAppear {
             self.viewModel.dispatch(.onAppear)
+        }
+    }
+
+    // Workaround to avoid eager load of NavigationLink's destination
+    // Otherwise it will load ALL destinations for ALL visible rows, making SwiftUI very slow
+    // This way it will load only the destination if some character is selected, and only the
+    // desination for that particular character details.
+    @ViewBuilder
+    func destination(for id: Int) -> some View {
+        if viewModel.state.selectedCharacter == id {
+            characterDetails.view(id)
+        } else {
+            EmptyView()
         }
     }
 }

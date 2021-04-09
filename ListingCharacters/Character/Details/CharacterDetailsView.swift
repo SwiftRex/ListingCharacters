@@ -85,22 +85,20 @@ struct CharacterDetailsView: View {
         .shadow(color: .gray, radius: 10, x: 5, y: 5)
     }
 }
-//
-//struct CharacterDetails_Previews: PreviewProvider {
-//    static let avatarURL = URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
-//    static let characterItemViewModel = CharacterListViewModel
-//        .CharacterListItemViewModel(id: 1,
-//                                    image: avatarURL,
-//                                    name: "Rick Sanchez",
-//                                    status: "Alive",
-//                                    species: "Human",
-//                                    gender: "Male",
-//                                    origin: "from Earth (C-137)",
-//                                    location: "at Earth (Replacement Dimension)",
-//                                    episodes: ["Episode 1", "Episode 2", "Episode 3", "Episode 4", "Episode 5"],
-//                                    isFavourite: true)
-//    static var previews: some View {
-//        CharacterDetails(viewModel: CharacterDetailsViewModel(character: characterItemViewModel)
-//        )
-//    }
-//}
+
+#if DEBUG
+struct CharacterDetailsViewPreviews: PreviewProvider {
+    static var previews: some View {
+        CharacterDetailsView(
+            viewModel: .mock(
+                state: CharacterDetailsViewState
+                    .from(
+                        state: fakeCharacters().first!,
+                        image: nil,
+                        isFavorite: true
+                    )
+            )
+        )
+    }
+}
+#endif

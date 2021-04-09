@@ -13,6 +13,8 @@ enum CharacterListViewAction {
     case onAppear
     case onScrollToTheBottom
     case item(id: Int, action: CharacterListItemViewAction)
+    case selectCharacter(id: Int)
+    case dismissCharacterDetails
 }
 
 extension CharacterListViewAction {
@@ -28,6 +30,10 @@ extension CharacterListViewAction {
             return .character(.fetchImage(characterId: id))
         case let .item(id, action: .cancelFetchImage):
             return .character(.cancelFetchImage(characterId: id))
+        case let .selectCharacter(id):
+            return .character(.openDetails(id: id))
+        case .dismissCharacterDetails:
+            return .character(.closeDetails)
         }
     }
 }

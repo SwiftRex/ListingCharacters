@@ -20,7 +20,7 @@ class CharacterListSnapshotTest: SnapshotTestsBase {
         )
         let sut = CharacterListView(
             viewModel: .mock(state: CharacterListViewState.from(state: state)),
-            characterDetails: { _ in AnyView(EmptyView()) }
+            characterDetails: .crash
         )
 
         assertSnapshotDevices(sut)

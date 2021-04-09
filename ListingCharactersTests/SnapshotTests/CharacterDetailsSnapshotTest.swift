@@ -11,8 +11,7 @@ import XCTest
 class CharacterDetailsSnapshotTest: SnapshotTestsBase {
 
     func testCharacterDetails() {
-        XCTFail("To be implemented")
-//        let sut = CharacterDetails_Previews.previews
-//        assertSnapshotDevices(sut)
+        let sut = CharacterDetailsViewPreviews.previews
+        assertSnapshotDevices(sut)
     }
 }

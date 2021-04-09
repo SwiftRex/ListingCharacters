@@ -11,6 +11,8 @@ import CoreGraphics
 enum CharacterAction {
     case readFirstPage
     case readNextPage
+    case openDetails(id: Int)
+    case closeDetails
     case gotCharacters([Character], page: CharacterPaging)
     case toggleFavorite(Int)
     case fetchImage(characterId: Int)

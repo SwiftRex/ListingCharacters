@@ -26,6 +26,10 @@ extension Reducer where ActionType == CharacterAction, StateType == CharacterLis
             state.pageInfo = page
         case let .imageGotDownloaded(url, image):
             state.images[url] = image
+        case let .openDetails(id):
+            state.viewDetails = state.characteres.first(where: { $0.id == id })?.id
+        case .closeDetails:
+            state.viewDetails = nil
         case .fetchImage, .cancelFetchImage:
             break
         }
