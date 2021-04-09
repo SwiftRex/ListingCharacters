@@ -12,60 +12,77 @@ struct CharacterDetailsView: View {
     @ObservedObject var viewModel: ObservableViewModel<CharacterDetailsViewAction, CharacterDetailsViewState>
 
     var body: some View {
-        EmptyView()
-//
-//        ScrollView {
-//            VStack {
-//                CharacterImageDetails(avatarURL: viewModel.character.image)
-//
-//                Spacer().frame(height: 40)
-//
-//                Text(viewModel.character.species)
-//                    .foregroundColor(.gray)
-//
-//                Text(viewModel.character.name)
-//                    .font(.system(size: 24, weight: .semibold))
-//                    .padding([.leading, .trailing], 20)
-//
-//                Text(viewModel.character.gender)
-//                    .foregroundColor(.gray).font(.subheadline)
-//
-//                Text(viewModel.character.location).font(.callout)
-//
-//                Text(viewModel.character.origin).font(.callout)
-//
-//                Spacer()
-//                    .frame(height: 20)
-//
-//                let columns = 3
-//                let roundedRows = Int(ceil((Double(viewModel.character.episodes.count) / Double(columns))))
-//                VStack {
-//                    ForEach(0 ..< roundedRows, id: \.self) { row in
-//                        HStack {
-//                            ForEach(0 ..< columns, id: \.self) { column in
-//                                let current = row * columns + column
-//                                if current < viewModel.character.episodes.count {
-//                                    EpisodeLabel(text: viewModel.character.episodes[current])
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//                Spacer()
-//                    .frame(height: 20)
-//            }
-//        }
+        ScrollView {
+            VStack {
+                avatar
+
+                Spacer().frame(height: 40)
+
+                Text(viewModel.state.species)
+                    .foregroundColor(.gray)
+
+                HStack {
+                    Button(
+                        action: {
+                            viewModel.dispatch(.toggleFavorite)
+                        },
+                        label: {
+                            Image(systemName: viewModel.state.favouriteImageName)
+                                .foregroundColor(.yellow)
+                        }
+                    ).buttonStyle(PlainButtonStyle())
+
+                    Text(viewModel.state.name)
+                        .font(.system(size: 24, weight: .semibold))
+                        .padding([.leading, .trailing], 20)
+                }
+
+                Text(viewModel.state.gender)
+                    .foregroundColor(.gray).font(.subheadline)
+
+                Text(viewModel.state.location).font(.callout)
+
+                Text(viewModel.state.origin).font(.callout)
+
+                Spacer()
+                    .frame(height: 20)
+
+                let columns = 3
+                let roundedRows = Int(ceil((Double(viewModel.state.episodes.count) / Double(columns))))
+                VStack {
+                    ForEach(0 ..< roundedRows, id: \.self) { row in
+                        HStack {
+                            ForEach(0 ..< columns, id: \.self) { column in
+                                let current = row * columns + column
+                                if current < viewModel.state.episodes.count {
+                                    EpisodeLabel(text: viewModel.state.episodes[current])
+                                }
+                            }
+                        }
+                    }
+                }
+                Spacer()
+                    .frame(height: 20)
+            }
+        }
     }
 
-    var image: some View {
-        EmptyView()
-//        LazyImage(
-//            url: avatarURL,
-//            placeholder: { Text("Loading...")}
-//        )
-//        .frame(width: 180, height: 280)
-//        .clipShape(RoundedRectangle(cornerRadius: 10))
-//        .shadow(color: .gray, radius: 10, x: 5, y: 5)
+    var avatar: some View {
+        LazyImage(
+            cacheReader: { viewModel.state.image },
+            fetch: { viewModel.dispatch(.fetchImage) },
+            cancel: { viewModel.dispatch(.cancelFetchImage) },
+            image: { image in
+                Image(decorative: image, scale: 1)
+                    .resizable()
+            },
+            placeholder: {
+                Text("Loading...")
+            }
+        )
+        .frame(width: 180, height: 280)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .shadow(color: .gray, radius: 10, x: 5, y: 5)
     }
 }
 //

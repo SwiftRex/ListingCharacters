@@ -34,7 +34,10 @@ struct CharacterListItemView: View {
                 Text(viewModel.state.gender).font(.subheadline)
                     .foregroundColor(.gray)
             }
+
+            Spacer()
         }
+        .padding(.horizontal)
     }
 
     var avatar: some View {
@@ -70,10 +73,7 @@ struct CharacterListItemViewPreviews: PreviewProvider {
                               status: "Alive",
                               species: "Human",
                               gender: "Male",
-                              origin: "",
-                              location: "",
-                              episodes: ["Episode 1", "Episode 2"],
-                              isFavourite: true
+                              favouriteImageName: "star"
                         ))
         )
     }

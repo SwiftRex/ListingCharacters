@@ -15,14 +15,7 @@ struct CharacterListItemViewState: Equatable, Identifiable {
     let status: String
     let species: String
     let gender: String
-    let origin: String
-    let location: String
-    let episodes: [String]
-    var isFavourite: Bool
-
-    var favouriteImageName: String {
-        isFavourite ? "star.fill" : "star"
-    }
+    var favouriteImageName: String
 
     static func from(state: Character, image: CGImage?, isFavorite: Bool) -> CharacterListItemViewState {
         CharacterListItemViewState(
@@ -32,16 +25,13 @@ struct CharacterListItemViewState: Equatable, Identifiable {
             status: state.status.rawValue,
             species: state.species,
             gender: state.gender.rawValue,
-            origin: "from: \(state.origin.name)",
-            location: "at \(state.location.name)",
-            episodes: state.episode.compactMap { "Episode \($0.lastPathComponent)" },
-            isFavourite: isFavorite
+            favouriteImageName: isFavorite ? "star.fill" : "star"
         )
     }
 }
 
 extension CharacterListItemViewState {
     static var empty: CharacterListItemViewState {
-        CharacterListItemViewState(id: 0, image: nil, name: "", status: "", species: "", gender: "", origin: "", location: "", episodes: [], isFavourite: false)
+        CharacterListItemViewState(id: 0, image: nil, name: "", status: "", species: "", gender: "", favouriteImageName: "star")
     }
 }

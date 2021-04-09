@@ -182,10 +182,10 @@
 		D66B9571261F83C400C7FB82 /* Character */ = {
 			isa = PBXGroup;
 			children = (
-				D6940B992620E5D000DEE2A1 /* Redux */,
-				D6940B982620E5C300DEE2A1 /* Model */,
 				D6E55F68261F900100733C56 /* Details */,
 				D6E55F67261F8FF700733C56 /* List */,
+				D6940B982620E5C300DEE2A1 /* Model */,
+				D6940B992620E5D000DEE2A1 /* Redux */,
 			);
 			path = Character;
 			sourceTree = "<group>";
