@@ -5,6 +5,8 @@
 //  Created by Luiz Rodrigo Martins Barbosa on 08.04.21.
 //
 
+import CoreGraphics
+import CoreImage
 import Foundation
 import SwiftRex
 
@@ -12,13 +14,15 @@ struct CharacterListState: Equatable {
     var characteres: [Character]
     var pageInfo: CharacterPaging
     var favourites: Set<Int>
+    var images: [URL: CGImage]
 }
 
 extension CharacterListState {
     static let empty = CharacterListState(
         characteres: [],
         pageInfo: .empty,
-        favourites: []
+        favourites: [],
+        images: [:]
     )
 }
 
@@ -27,6 +31,9 @@ enum CharacterActions {
     case readNextPage
     case gotCharacters([Character], page: CharacterPaging)
     case toggleFavorite(Int)
+    case fetchImage(characterId: Int)
+    case cancelFetchImage(characterId: Int)
+    case imageGotDownloaded(URL, CGImage)
 }
 
 extension Reducer where ActionType == CharacterActions, StateType == CharacterListState {
@@ -45,6 +52,10 @@ extension Reducer where ActionType == CharacterActions, StateType == CharacterLi
         case let .gotCharacters(characters, page):
             state.characteres += characters
             state.pageInfo = page
+        case let .imageGotDownloaded(url, image):
+            state.images[url] = image
+        case .fetchImage, .cancelFetchImage:
+            break
         }
     }
 }
@@ -62,6 +73,7 @@ class CharacterMiddleware: Middleware {
     private var output: AnyActionHandler<CharacterActions>?
     private let characterService: CharacterService
     private var cancellables = Set<AnyCancellable>()
+    private var imageDownloads: [URL: AnyCancellable] = [:]
 
     init(characterService: CharacterService) {
         self.characterService = characterService
@@ -81,12 +93,30 @@ class CharacterMiddleware: Middleware {
                 self.characterService
                     .getAll(page: getState().pageInfo)
                     .sink(
-                        receiveCompletion: { completion in },
+                        receiveCompletion: { completion in }, // TODO: Handle error
                         receiveValue: { response in
                             output.dispatch(.gotCharacters(response.results, page: response.info))
                         }
                     )
                     .store(in: &self.cancellables)
+            case let .fetchImage(characterId):
+                guard let url = getState().characteres.first(where: { $0.id == characterId })?.image else { return }
+
+                let downloadTask = self.characterService
+                    .getImage(from: url)
+                    .sink(
+                        receiveCompletion: { completion in }, // TODO: Handle error
+                        receiveValue: { image in
+                            output.dispatch(.imageGotDownloaded(url, image))
+                        }
+                    )
+                self.imageDownloads[url] = downloadTask
+            case let .cancelFetchImage(characterId):
+                guard let url = getState().characteres.first(where: { $0.id == characterId })?.image else { return }
+
+                self.imageDownloads[url] = nil
+            case let .imageGotDownloaded(url, _):
+                self.imageDownloads.removeValue(forKey: url)
             case .toggleFavorite:
                 break
             case .gotCharacters:

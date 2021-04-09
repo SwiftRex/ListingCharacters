@@ -5,8 +5,9 @@
 //  Created by Jarbas on 05/12/20.
 //
 
-import Foundation
 import Combine
+import CoreGraphics
+import Foundation
 
 struct CharacterService {
     let urlRequester: URLRequester
@@ -32,6 +33,11 @@ struct CharacterService {
         return urlRequester(URLRequest(url: url))
             .decode(type: CharacterListResponse.self, decoder: decoder())
             .eraseToAnyPublisher()
+    }
+
+    func getImage(from url: URL) -> AnyPublisher<CGImage, APIError> {
+        urlRequester(URLRequest(url: url))
+            .decodeImage()
     }
 }
 

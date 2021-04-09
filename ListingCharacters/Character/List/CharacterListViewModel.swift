@@ -6,6 +6,7 @@
 //
 
 import Combine
+import CoreGraphics
 import Foundation
 
 enum CharacterListViewAction {
@@ -23,12 +24,18 @@ extension CharacterListViewAction {
             return .character(.readNextPage)
         case let .item(id, .toggleFavorite):
             return .character(.toggleFavorite(id))
+        case let .item(id, action: .fetchImage):
+            return .character(.fetchImage(characterId: id))
+        case let .item(id, action: .cancelFetchImage):
+            return .character(.cancelFetchImage(characterId: id))
         }
     }
 }
 
 enum CharacterListItemViewAction {
     case toggleFavorite
+    case fetchImage
+    case cancelFetchImage
 }
 
 struct CharacterListViewState: Equatable {
@@ -39,7 +46,11 @@ extension CharacterListViewState {
     static func from(state: CharacterListState) -> CharacterListViewState {
         CharacterListViewState(
             rows: state.characteres.compactMap { character in
-                CharacterListItemViewState.from(state: character, isFavorite: state.favourites.contains(character.id))
+                CharacterListItemViewState.from(
+                    state: character,
+                    image: state.images[character.image],
+                    isFavorite: state.favourites.contains(character.id)
+                )
             }
         )
     }
@@ -53,7 +64,7 @@ extension CharacterListViewState {
 
 struct CharacterListItemViewState: Equatable, Identifiable {
     let id: Int
-    let image: URL?
+    let image: CGImage?
     let name: String
     let status: String
     let species: String
@@ -67,10 +78,10 @@ struct CharacterListItemViewState: Equatable, Identifiable {
         isFavourite ? "star.fill" : "star"
     }
 
-    static func from(state: Character, isFavorite: Bool) -> CharacterListItemViewState {
+    static func from(state: Character, image: CGImage?, isFavorite: Bool) -> CharacterListItemViewState {
         CharacterListItemViewState(
             id: state.id,
-            image: state.image,
+            image: image,
             name: state.name,
             status: state.status.rawValue,
             species: state.species,

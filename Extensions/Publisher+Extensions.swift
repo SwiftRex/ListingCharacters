@@ -6,7 +6,19 @@
 //
 
 import Combine
+import CoreGraphics
+import CoreImage
 import Foundation
+
+#if canImport(UIKit)
+import UIKit
+public typealias XXImage = UIImage
+#endif
+#if canImport(AppKit)
+import AppKit
+public typealias XXImage = NSImage
+#endif
+
 
 public enum APIError: Error {
     case urlError(URLError)
@@ -14,6 +26,7 @@ public enum APIError: Error {
     case unexpectedStatusCode(Int)
     case decodingError(DecodingError)
     case unknownError(Error)
+    case imageDataError
 }
 
 extension Publisher where Output == (data: Data, response: URLResponse), Failure == URLError {
@@ -50,6 +63,17 @@ extension Publisher where Output == (data: Data, response: URLResponse), Failure
         }
     }
 
+    public func decodeImage() -> AnyPublisher<CGImage, APIError> {
+        mapError(APIError.urlError)
+            .flatMapResult(Self.ensureStatusCode)
+            .flatMap { data -> AnyPublisher<CGImage, APIError> in
+                XXImage(data: data)?
+                    .cgImage
+                    .map { Just($0).setFailureType(to: APIError.self).eraseToAnyPublisher() }
+                ?? Fail(error: .imageDataError).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
 }
 
 extension TopLevelDecoder {

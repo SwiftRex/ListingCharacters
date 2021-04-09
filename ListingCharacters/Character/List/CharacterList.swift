@@ -16,15 +16,17 @@ struct CharacterList: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                ForEach(
-                    viewModel: viewModel,
-                    collection: \.rows,
-                    identifiableRowToCollectionAction: CharacterListViewAction.item
-                ) { rowViewModel in
-                    NavigationLink(
-                        destination: characterDetails(rowViewModel.state.id)
-                    ) {
-                        CharacterRow(viewModel: rowViewModel)
+                LazyVStack {
+                    ForEach(
+                        viewModel: viewModel,
+                        collection: \.rows,
+                        identifiableRowToCollectionAction: CharacterListViewAction.item
+                    ) { rowViewModel in
+                        NavigationLink(
+                            destination: characterDetails(rowViewModel.state.id)
+                        ) {
+                            CharacterRow(viewModel: rowViewModel)
+                        }
                     }
                 }
             }
