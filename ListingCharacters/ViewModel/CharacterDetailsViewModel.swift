@@ -7,10 +7,10 @@
 import Combine
 import SwiftUI
 
-class CharacterDetailsViewModel: ObservableObject {
-    var character: CharacterListViewModel.CharacterListItemViewModel
-
-    init(character: CharacterListViewModel.CharacterListItemViewModel) {
-        self.character = character
-    }
-}
+//class CharacterDetailsViewModel: ObservableObject {
+//    var character: CharacterListViewModel.CharacterListItemViewModel
+//
+//    init(character: CharacterListViewModel.CharacterListItemViewModel) {
+//        self.character = character
+//    }
+//}

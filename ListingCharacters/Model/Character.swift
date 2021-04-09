@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Character: Decodable, Identifiable {
+struct Character: Decodable, Equatable, Identifiable {
     let id: Int
     let name: String
     let status: CharacterStatus
@@ -22,20 +22,20 @@ struct Character: Decodable, Identifiable {
     let created: Date?
 }
 
-enum CharacterStatus: String, Decodable {
+enum CharacterStatus: String, Decodable, Equatable {
     case alive = "Alive"
     case dead = "Dead"
     case unknown
 }
 
-enum Gender: String, Decodable {
+enum Gender: String, Decodable, Equatable {
     case male = "Male"
     case female = "Female"
     case genderless = "Genderless"
     case unknown
 }
 
-struct Location: Decodable {
+struct Location: Decodable, Equatable {
     let name: String
     let url: URL?
 

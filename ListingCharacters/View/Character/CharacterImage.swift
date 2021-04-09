@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CharacterImage: View {
-    let avatarURL: URL
+    let avatarURL: URL?
     var body: some View {
         AsyncImage(
             url: avatarURL,

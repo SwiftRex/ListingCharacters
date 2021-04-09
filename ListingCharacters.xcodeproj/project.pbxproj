@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6190C6A261F70620084BBAE /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6190C69261F70620084BBAE /* World.swift */; };
+		D6190C6D261F762D0084BBAE /* CombineRex in Frameworks */ = {isa = PBXBuildFile; productRef = D6190C6C261F762D0084BBAE /* CombineRex */; };
+		D6190C70261F76420084BBAE /* LoggerMiddleware in Frameworks */ = {isa = PBXBuildFile; productRef = D6190C6F261F76420084BBAE /* LoggerMiddleware */; };
+		D6190C73261F765E0084BBAE /* CombineRextensions in Frameworks */ = {isa = PBXBuildFile; productRef = D6190C72261F765E0084BBAE /* CombineRextensions */; };
+		D6190C76261F770E0084BBAE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6190C75261F770E0084BBAE /* Store.swift */; };
+		D66B9573261F83E400C7FB82 /* CharacterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66B9572261F83E400C7FB82 /* CharacterHandler.swift */; };
 		E938C4FF2580FD4500303ED3 /* CharacterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E938C4FE2580FD4500303ED3 /* CharacterAPI.swift */; };
 		E93A420C257EA0CB0090F4B8 /* CharacterImageDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A420B257EA0CB0090F4B8 /* CharacterImageDetails.swift */; };
 		E93A4212257EB0F00090F4B8 /* EpisodeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A4211257EB0F00090F4B8 /* EpisodeLabel.swift */; };
@@ -60,6 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D6190C69261F70620084BBAE /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		D6190C75261F770E0084BBAE /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		D66B9572261F83E400C7FB82 /* CharacterHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterHandler.swift; sourceTree = "<group>"; };
 		E938C4FE2580FD4500303ED3 /* CharacterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAPI.swift; sourceTree = "<group>"; };
 		E93A420B257EA0CB0090F4B8 /* CharacterImageDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImageDetails.swift; sourceTree = "<group>"; };
 		E93A4211257EB0F00090F4B8 /* EpisodeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeLabel.swift; sourceTree = "<group>"; };
@@ -103,6 +112,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6190C70261F76420084BBAE /* LoggerMiddleware in Frameworks */,
+				D6190C73261F765E0084BBAE /* CombineRextensions in Frameworks */,
+				D6190C6D261F762D0084BBAE /* CombineRex in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +136,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D6190C68261F70560084BBAE /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				D6190C69261F70620084BBAE /* World.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		D6190C74261F77030084BBAE /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				D6190C75261F770E0084BBAE /* Store.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		D66B9571261F83C400C7FB82 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				D6E55F68261F900100733C56 /* Details */,
+				D6E55F67261F8FF700733C56 /* List */,
+				D66B9572261F83E400C7FB82 /* CharacterHandler.swift */,
+			);
+			path = Character;
+			sourceTree = "<group>";
+		};
+		D6E55F67261F8FF700733C56 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				E93EA9B2257BCE5300D7EC4A /* CharacterRow.swift */,
+				E9FF8C99257D6B4500CA2B5A /* CharacterListViewModel.swift */,
+				E93EA943257BB2AF00D7EC4A /* CharacterList.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		D6E55F68261F900100733C56 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				E9FF8CA1257D9DA800CA2B5A /* CharacterDetails.swift */,
+				E93A420B257EA0CB0090F4B8 /* CharacterImageDetails.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 		E93A4210257EB0D90090F4B8 /* Episode */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +221,9 @@
 		E93EA940257BB2AF00D7EC4A /* ListingCharacters */ = {
 			isa = PBXGroup;
 			children = (
+				D66B9571261F83C400C7FB82 /* Character */,
+				D6190C74261F77030084BBAE /* Store */,
+				D6190C68261F70560084BBAE /* Dependencies */,
 				E9BC3B5E258152DE00399758 /* Repository */,
 				E93EA97D257BB72000D7EC4A /* API */,
 				E93EA9A5257BCA2200D7EC4A /* Service */,
@@ -293,10 +353,6 @@
 			isa = PBXGroup;
 			children = (
 				E9DB0122257D60290075EA49 /* CharacterImage.swift */,
-				E93EA943257BB2AF00D7EC4A /* CharacterList.swift */,
-				E93EA9B2257BCE5300D7EC4A /* CharacterRow.swift */,
-				E9FF8CA1257D9DA800CA2B5A /* CharacterDetails.swift */,
-				E93A420B257EA0CB0090F4B8 /* CharacterImageDetails.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -304,7 +360,6 @@
 		E9FF8C98257D6B1700CA2B5A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E9FF8C99257D6B4500CA2B5A /* CharacterListViewModel.swift */,
 				E969020725829E870016B7AC /* CharacterDetailsViewModel.swift */,
 			);
 			path = ViewModel;
@@ -328,6 +383,9 @@
 			);
 			name = ListingCharacters;
 			packageProductDependencies = (
+				D6190C6C261F762D0084BBAE /* CombineRex */,
+				D6190C6F261F76420084BBAE /* LoggerMiddleware */,
+				D6190C72261F765E0084BBAE /* CombineRextensions */,
 			);
 			productName = ListingCharacters;
 			productReference = E93EA93E257BB2AF00D7EC4A /* ListingCharacters.app */;
@@ -405,6 +463,9 @@
 			mainGroup = E93EA935257BB2AF00D7EC4A;
 			packageReferences = (
 				E9779BF725825AA500BCD167 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				D6190C6B261F762D0084BBAE /* XCRemoteSwiftPackageReference "SwiftRex" */,
+				D6190C6E261F76420084BBAE /* XCRemoteSwiftPackageReference "LoggerMiddleware" */,
+				D6190C71261F765E0084BBAE /* XCRemoteSwiftPackageReference "CombineRextensions" */,
 			);
 			productRefGroup = E93EA93F257BB2AF00D7EC4A /* Products */;
 			projectDirPath = "";
@@ -475,7 +536,9 @@
 				E9BC3B60258152FD00399758 /* FavouritesRepository.swift in Sources */,
 				E969020825829E870016B7AC /* CharacterDetailsViewModel.swift in Sources */,
 				E93EA970257BB31E00D7EC4A /* Character.swift in Sources */,
+				D66B9573261F83E400C7FB82 /* CharacterHandler.swift in Sources */,
 				E93EA944257BB2AF00D7EC4A /* CharacterList.swift in Sources */,
+				D6190C76261F770E0084BBAE /* Store.swift in Sources */,
 				E9E43FE0257FF94C00AE8853 /* Publisher+Extensions.swift in Sources */,
 				E9DB0111257D23160075EA49 /* ImageCache.swift in Sources */,
 				E9FF8C9A257D6B4500CA2B5A /* CharacterListViewModel.swift in Sources */,
@@ -489,6 +552,7 @@
 				E93EA942257BB2AF00D7EC4A /* ListingCharactersApp.swift in Sources */,
 				E9FF8CA2257D9DA800CA2B5A /* CharacterDetails.swift in Sources */,
 				E9DB0116257D561B0075EA49 /* ImageCacheKey.swift in Sources */,
+				D6190C6A261F70620084BBAE /* World.swift in Sources */,
 				E9530511257EDC8900DF8707 /* CharacterListResponse.swift in Sources */,
 				E9DB00FB257C66260075EA49 /* ImageLoader.swift in Sources */,
 				E93A420C257EA0CB0090F4B8 /* CharacterImageDetails.swift in Sources */,
@@ -813,6 +877,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D6190C6B261F762D0084BBAE /* XCRemoteSwiftPackageReference "SwiftRex" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftRex/SwiftRex.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.3;
+			};
+		};
+		D6190C6E261F76420084BBAE /* XCRemoteSwiftPackageReference "LoggerMiddleware" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftRex/LoggerMiddleware.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.3;
+			};
+		};
+		D6190C71261F765E0084BBAE /* XCRemoteSwiftPackageReference "CombineRextensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftRex/CombineRextensions";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		E9779BF725825AA500BCD167 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
@@ -824,6 +912,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D6190C6C261F762D0084BBAE /* CombineRex */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6190C6B261F762D0084BBAE /* XCRemoteSwiftPackageReference "SwiftRex" */;
+			productName = CombineRex;
+		};
+		D6190C6F261F76420084BBAE /* LoggerMiddleware */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6190C6E261F76420084BBAE /* XCRemoteSwiftPackageReference "LoggerMiddleware" */;
+			productName = LoggerMiddleware;
+		};
+		D6190C72261F765E0084BBAE /* CombineRextensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6190C71261F765E0084BBAE /* XCRemoteSwiftPackageReference "CombineRextensions" */;
+			productName = CombineRextensions;
+		};
 		E9779BF825825AA500BCD167 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E9779BF725825AA500BCD167 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
