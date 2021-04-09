@@ -9,9 +9,9 @@ import CombineRex
 import CombineRextensions
 import SwiftUI
 
-struct CharacterList: View {
+struct CharacterListView: View {
     @ObservedObject var viewModel: ObservableViewModel<CharacterListViewAction, CharacterListViewState>
-    let characterDetails: (Int) -> AnyView
+    let characterDetails: ViewProducer<Int, CharacterDetailsView>
 
     var body: some View {
         NavigationView {
@@ -23,9 +23,9 @@ struct CharacterList: View {
                         identifiableRowToCollectionAction: CharacterListViewAction.item
                     ) { rowViewModel in
                         NavigationLink(
-                            destination: characterDetails(rowViewModel.state.id)
+                            destination: characterDetails.view(rowViewModel.state.id)
                         ) {
-                            CharacterRow(viewModel: rowViewModel)
+                            CharacterListItemView(viewModel: rowViewModel)
                         }
                     }
                 }
@@ -76,9 +76,9 @@ func fakeCharacters() -> [Character] {
     return [rick, morty, summer, beth]
 }
 
-struct CharacterList_Previews: PreviewProvider {
+struct CharacterListViewPreviews: PreviewProvider {
     static var previews: some View {
-        CharacterList(
+        CharacterListView(
             viewModel: .mock(
                 state: CharacterListViewState.from(
                     state: .init(
@@ -89,7 +89,7 @@ struct CharacterList_Previews: PreviewProvider {
                     )
                 )
             ),
-            characterDetails: { _ in AnyView(EmptyView()) }
+            characterDetails: .crash
         )
     }
 }

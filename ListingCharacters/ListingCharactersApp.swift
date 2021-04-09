@@ -6,6 +6,7 @@
 //
 
 import CombineRex
+import CombineRextensions
 import SwiftUI
 
 let world = World.live
@@ -16,21 +17,7 @@ struct ListingCharactersApp: App {
 
     var body: some Scene {
         WindowGroup {
-            mainView
+            ViewProducer.characterList(store: store).view()
         }
-    }
-}
-
-extension ListingCharactersApp {
-    var mainView: CharacterList {
-        CharacterList(
-            viewModel: store.projection(
-                action: { $0.toAppAction },
-                state: { CharacterListViewState.from(state: $0.characterListState) }
-            ).asObservableViewModel(initialState: .empty),
-            characterDetails: { id in
-                AnyView(EmptyView())
-            }
-        )
     }
 }

@@ -18,7 +18,7 @@ class CharacterListSnapshotTest: SnapshotTestsBase {
             favourites: [],
             images: [:]
         )
-        let sut = CharacterList(
+        let sut = CharacterListView(
             viewModel: .mock(state: CharacterListViewState.from(state: state)),
             characterDetails: { _ in AnyView(EmptyView()) }
         )

@@ -8,7 +8,7 @@
 import CombineRex
 import SwiftUI
 
-struct CharacterRow: View {
+struct CharacterListItemView: View {
     @ObservedObject var viewModel: ObservableViewModel<CharacterListItemViewAction, CharacterListItemViewState>
 
     var body: some View {
@@ -58,10 +58,10 @@ struct CharacterRow: View {
 }
 
 #if DEBUG
-struct CharacterRow_Previews: PreviewProvider {
+struct CharacterListItemViewPreviews: PreviewProvider {
     static let avatarURL = URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
     static var previews: some View {
-        CharacterRow(
+        CharacterListItemView(
             viewModel:
                 .mock(state:
                         .init(id: 1,

@@ -5,12 +5,14 @@
 //  Created by Jarbas on 06/12/20.
 //
 
+import CombineRex
 import SwiftUI
 
-//struct CharacterDetails: View {
-//    @ObservedObject var viewModel: CharacterDetailsViewModel
-//
-//    var body: some View {
+struct CharacterDetailsView: View {
+    @ObservedObject var viewModel: ObservableViewModel<CharacterDetailsViewAction, CharacterDetailsViewState>
+
+    var body: some View {
+        EmptyView()
 //
 //        ScrollView {
 //            VStack {
@@ -53,9 +55,19 @@ import SwiftUI
 //                    .frame(height: 20)
 //            }
 //        }
-//    }
-//
-//}
+    }
+
+    var image: some View {
+        EmptyView()
+//        LazyImage(
+//            url: avatarURL,
+//            placeholder: { Text("Loading...")}
+//        )
+//        .frame(width: 180, height: 280)
+//        .clipShape(RoundedRectangle(cornerRadius: 10))
+//        .shadow(color: .gray, radius: 10, x: 5, y: 5)
+    }
+}
 //
 //struct CharacterDetails_Previews: PreviewProvider {
 //    static let avatarURL = URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
